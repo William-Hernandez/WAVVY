@@ -1,0 +1,27 @@
+#Water Temperature probe
+#https://www.sparkfun.com/products/11050
+
+from gpiozero import InputDevice, OutputDevice
+from time import time,sleep
+
+tempPower = OutputDevice()
+tempRead = InputDevice()
+
+def waterTemp():
+    tempPower.on()
+    sleep(60000)
+    sample_time = time()
+    result = tempRead.read()
+
+    if result.is_valid():
+        print(sample_time)
+        print("Water Temperature is %d C.", result)
+    else:
+        print("Error: %d." result.error_code)
+        print("Reinitializing Analysis")
+        tempPower.off()
+        waterTemp()
+
+    sleep(60000)
+
+    tempPower.off()
