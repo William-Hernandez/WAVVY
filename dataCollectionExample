@@ -1,0 +1,15 @@
+file = open('./data.csv', 'a')#placeholder csv file, 'a' appends to the next line
+
+file.write("SampleTime,Analysis,Result")
+file.write("\n")
+
+#Example Sensor Data
+ath = [
+    ["10/16/18 1000", "AirTemp", "23"],
+    ["10/16/18 1000", "Humidity", "13"],
+]
+
+for d in my_data:#for each element in 'my_data'
+    #note ','.join(["a", "b", "c"]) will give you string: "a,b,c"
+    file.write(','.join(d))#joins the data with commas.
+    file.write("\n")#adds a new line
