@@ -1,15 +1,8 @@
-file = open('./data.csv', 'a')#placeholder csv file, 'a' appends to the next line
+import csv #imports CSV module
 
-file.write("SampleTime,Analysis,Result")
-file.write("\n")
-
-#Example Sensor Data
-ath = [
-    ["10/16/18 1000", "AirTemp", "23"],
-    ["10/16/18 1000", "Humidity", "13"],
-]
-
-for d in my_data:#for each element in 'my_data'
-    #note ','.join(["a", "b", "c"]) will give you string: "a,b,c"
-    file.write(','.join(d))#joins the data with commas.
-    file.write("\n")#adds a new line
+ath = [['10/16/18 1600','AirTemp','28'], ['10/16/18 1600', 'Humidity', '7']] #sample data
+with open('Data.csv', mode='a') as Data_file: #opens the file, and appends
+    for d in ath: #for each item in 'ath'
+        data_writer = csv.writer(Data_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)#establish writing conditions
+        data_writer.writerow(d)#writes data to a new row
+#print(ath)#use this for troubleshooting
